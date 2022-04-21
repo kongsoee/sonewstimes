@@ -1,3 +1,5 @@
+@import url(common.css);
+
 .head{
     margin-top:1em;
     display: flex;
@@ -7,8 +9,64 @@
     width:430px;
 }
 
-.menus{
+#listbtn{    background: none;
+    border:none;}
+.hide {
+    display: none;
+  }
+.sidemenu{
+    height:100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left:0;
+    background-color: black;
+    overflow-x: hidden;
+    transition: 0.5s;
+
+}
+
+.sidemenus{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top:55px;
+}
+.sidemenus button{
+    border:none;
+    background: none;
+    width: 100%;
+    margin-bottom: 10px;
+    color:white;
+}
+.sidemenus button:hover{
+    background-color: white;
+    color:black;
+}
+
+.closebtn{
+    position: absolute;
+    top:0;
+    right:25px;
+    font-size: 40px;
+    border:none;
+    background: none;
+    color: white;
+}
+#search{
     margin-top:1em;
+    margin-left:2em;
+    border:none;
+    border-bottom: 2px solid black ;
+}
+#searchbtn{
+    border:none;
+    background-color: white;
+}
+
+.menus{
+    margin-top:2em;
     display: flex;
     justify-content: center;
     border-top:1px solid  #ebebeb;
@@ -25,12 +83,22 @@
 }
 
 .news{
+    display: flex;
+    padding: 1em;
     border-bottom: 2px solid black;
 }
 
 .news-img{
     max-width: 100%;
-    max-height: 250px;
+    max-height: 95%;
+    margin-right: 1em;
+    text-align: center;
+}
+.title{
+    font-size: 25px;
+    font-weight: bold;
+    color:black;
+    
 }
 nav{
     display: flex;
@@ -38,6 +106,24 @@ nav{
     margin-top:1em;
 }
 .page-link{
-
+    color:black;
     border:none;
+}
+.row{
+    margin:1em auto;
+}
+footer{
+    background-color: gray;
+    width:100%;
+    max-height: 250px;
+}
+
+@media screen and (max-width: 63rem){
+    .hide{
+        display:inline;
+        margin-left: 30px;
+    }
+    .menus{
+        display: none;
+    }
 }

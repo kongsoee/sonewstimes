@@ -4,7 +4,7 @@ let page=1;
 let total_pages=0;
 let searchbtn=document.getElementById("searchbtn");
 let url; //전역번수선언
-let menus=document.querySelectorAll(".menus button"); //버튼들 전부 가져오기
+let menus=document.querySelectorAll("#menu-list button"); //버튼들 전부 가져오기
 //api부르는 함수, await(강제로 기다리게하는 async와 반드시 세트 )
 menus.forEach(menu=> 
     menu.addEventListener("click",(event)=>getnewskeyword(event)));
@@ -40,7 +40,13 @@ const getnews =async() =>{
     }catch(error){
         console.log("잡힌 에러는",error.message);
         //
+
+        page=0;
+        total_pages=0;
+        pagenationHTML='';
+        pagenation();
         errorRender(error.message);
+
     };
 
 };
@@ -88,14 +94,20 @@ const render =() =>{
         return`<div class="row news">
         
             <div class="col-lg-4">
-            <img class="news-img" src="${item.media}"/>
+            <img class="news-img" src="${item.media || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqEWgS0uxxEYJ0PsOb2OgwyWvC0Gjp8NUdPw&usqp=CAU"
+        }" />
             </div>
                 <div class="col-lg-8">
-                <h2>${item.title}</h2>
-                <p>${item.summary}</p>
+                <a class="title" target="_black" href="${item.link}">${item.title}</a>
+                <p>${item.summary == null || item.summary == " " ? "내용없음":item.summary.length >200
+            ? item.summary.substring(0/200)+ "..." : item.summary}</p>
+            <div>${item.rights || "no source"}  ${moment(
+                item.published_date
+              ).fromNow()}</div>
                 </div>
-                ${item.rights} ${item.published_date}
+                
         </div>`;
+    
     //map끝나고 조인붙이면 string타입변환
     }).join("");
     
@@ -134,9 +146,12 @@ const pagenation = () => {
             <a class="page-link" href='#js-bottom'>&lt;</a>
         </li>`
     }
+
+    if(total_pages!=0){
     for(let i=first;i<=last;i++){
         pagenationHTML+=` <li class="page-item ${page==i?"active":""}"><a class="page-link" href="#" onclick="move(${i})">${i}</a></li>`
     };
+}
 
     if(last<total_pages){
         pagenationHTML+= `<li class="page-item">
@@ -168,3 +183,11 @@ searchbtn.addEventListener("click",newskeyword);
 
 
 getlastesnews();
+
+const openNav = () => {
+    document.getElementById("sidemenu_").style.width = "250px";
+  };
+  
+  const closeNav = () => {
+    document.getElementById("sidemenu_").style.width = "0px";
+  };
