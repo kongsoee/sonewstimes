@@ -15,7 +15,7 @@ menus.forEach(menu=>
 
 const getnews =async() =>{
     try{
-        let header = new Headers({"x-api-key":"PwkxvbUm99Z309ZGQ0rvprgGpQh99xCzX2N0b32xqo8"})
+        let header = new Headers({"x-api-key":"buIrSo0FmmtFJ9AyiI_hPsz2SVo8ckwm3dfrrc6wjcM"})
         url.searchParams.set('page', page);  //&page=
         console.log(url);
         
@@ -53,7 +53,7 @@ const getnews =async() =>{
 
     const getlastesnews =async()=>{
     //URL 자바에서 주는 클래스! new라는 생성자 사용
-    url =new URL(`https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&topic=business&page_size=10`) ;
+    url =new URL(`https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&page_size=10`) ;
 
         getnews();
     
@@ -183,6 +183,7 @@ searchbtn.addEventListener("click",newskeyword);
 
 
 getlastesnews();
+
 
 const openNav = () => {
     document.getElementById("sidemenu_").style.width = "250px";
